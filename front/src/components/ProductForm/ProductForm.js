@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Button, Col, Form, FormGroup, Input, Label} from "reactstrap";
+import {Button, Col, Form, FormGroup} from "reactstrap";
 import FormElement from "../UI/Form/FormElement";
 
 class ProductForm extends Component {

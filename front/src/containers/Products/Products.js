@@ -24,7 +24,7 @@ class Products extends Component {
           <Alert color="danger">{this.props.error.error}</Alert>
         )}
         <Row style={{paddingTop: '25px', paddingBottom: '25px'}}>
-          <Col xs={4}>
+          <Col xs={2}>
             <ListGroup>
               {this.props.categories.map(c=>(
                 <ListGroupItem key={c._id}>
@@ -33,7 +33,7 @@ class Products extends Component {
               ))}
             </ListGroup>
           </Col>
-          <Col xs={8}>
+          <Col xs={10}>
             <h2>
               Products
               {
@@ -48,19 +48,22 @@ class Products extends Component {
                 </Button>
               }
             </h2>
-            {
-              this.props.products.map(product => (
-                <ProductListItem
-                  key={product._id}
-                  title={product.title}
-                  id={product._id}
-                  price={product.price}
-                  image={product.image}
-                />
-              ))
-            }
+              <Row>
+                {
+                  this.props.products.map(product => (
+                    <Col xs={4} key={product._id}>
+                      <ProductListItem
+                        title={product.title}
+                        id={product._id}
+                        price={product.price}
+                        image={product.image}
+                      />
+                    </Col>
 
-            {}
+                  ))
+                }
+              </Row>
+
           </Col>
         </Row>
         <div ref={this.bottom}/>

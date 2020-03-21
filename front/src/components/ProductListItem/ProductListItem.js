@@ -1,20 +1,25 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {Card, CardBody} from "reactstrap";
-import ProductThumbnail from "../ProductThumbnail/ProductThumbnail";
+import {Card, CardBody, CardImg, CardText, CardTitle} from "reactstrap";
 import {Link} from "react-router-dom";
+
+import {apiURL} from "../../constants";
 
 const ProductListItem = props => {
   return (
     <Card>
+      <CardImg top width="100%" src={apiURL + '/uploads/' + props.image} alt={props.title}/>
       <CardBody>
-        <ProductThumbnail image={props.image}/>
-        <Link to={"/products/" + props.id}>
-          {props.title}
-        </Link>
-        <strong style={{marginLeft: '10px'}}>
-          {props.price} KGS
-        </strong>
+        <CardTitle>
+          <Link to={"/products/" + props.id}>
+            {props.title}
+          </Link>
+        </CardTitle>
+        <CardText>
+            <strong>
+              {props.price} KGS
+            </strong>
+        </CardText>
       </CardBody>
     </Card>
   );

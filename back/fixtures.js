@@ -64,7 +64,7 @@ const run = async () => {
     category: computers,
     image: 'fixtures/pc.png',
     seller: user1,
-    description: 'Console peasants have washed my mind and now I am selling my pc to buy a console. Only used id for one month! Overclock options available',
+    description: 'Console peasants brainwashed me and now I am selling my pc to buy a console. Only used id for one month! Overclock options available',
   }, {
     title: 'Gaming Chair',
     price: 1000,
@@ -76,7 +76,7 @@ const run = async () => {
     title: 'Mazda CX-5',
     price: 1000000,
     category: cars,
-    image: 'fixtures/gaming-chair.jpg',
+    image: 'fixtures/mazda.png',
     seller: user2,
     description: 'Brand new Mazda for sale',
   }, {

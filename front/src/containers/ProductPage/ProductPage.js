@@ -14,7 +14,7 @@ class ProductPage extends Component {
     const product = {...this.props.product};
 
     return (
-      <div>
+      <div style={{paddingBottom: '30px'}}>
         {this.props.error && (
           <Alert color="danger">{this.props.error.error}</Alert>
         )}
@@ -25,6 +25,9 @@ class ProductPage extends Component {
           <Col xs={8}>
             <img src={apiURL + '/uploads/' + product.image} alt={product.title}
                  height='400px'/>
+                 <br/>
+                 <br/>
+                 <hr/>
             <p>{product.description}</p>
           </Col>
           <Col xs={4}>
@@ -45,9 +48,6 @@ class ProductPage extends Component {
             <p><b>{product.seller.phone}</b></p>
           </Col>
         </Row>
-
-
-
       </div>
     );
   }
