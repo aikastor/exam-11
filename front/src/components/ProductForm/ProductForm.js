@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {Button, Col, Form, FormGroup, Input, Label} from "reactstrap";
+import FormElement from "../UI/Form/FormElement";
 
 class ProductForm extends Component {
   state = {
@@ -25,6 +26,8 @@ class ProductForm extends Component {
       formData.append(key, value);
     });
 
+    formData.append('seller',this.props.seller);
+
     this.props.onSubmit(formData);
   };
 
@@ -43,71 +46,49 @@ class ProductForm extends Component {
   render() {
     return (
       <Form onSubmit={this.submitFormHandler}>
-        <FormGroup row>
-          <Label sm={2} for="category">Category</Label>
-          <Col sm={10}>
-            <Input
-              type="select"
-              name="category" id="category"
-              value={this.state.category}
-              onChange={this.inputChangeHandler}
-            >
-              <option value="">Please select a category...</option>
-              {this.props.categories.map(category => (
-                <option key={category._id} value={category._id}>{category.title}</option>
-              ))}
-            </Input>
-          </Col>
-        </FormGroup>
+        <FormElement
+          type="select"
+          id="category"
+          value={this.state.category}
+          onChange={this.inputChangeHandler}
+          propertyName='category'
+          title='Category'
+          required={true}
+        >
 
-        <FormGroup row>
-          <Label sm={2} for="title">Title</Label>
-          <Col sm={10}>
-            <Input
-              type="text"
-              name="title" id="title"
-              placeholder="Enter product title"
-              value={this.state.title}
-              onChange={this.inputChangeHandler}
-            />
-          </Col>
-        </FormGroup>
-        <FormGroup row>
-          <Label sm={2} for="price">Price</Label>
-          <Col sm={10}>
-            <Input
-              type="number" min="0"
-              name="price" id="price"
-              placeholder="Enter product price"
-              value={this.state.price}
-              onChange={this.inputChangeHandler}
-            />
-          </Col>
-        </FormGroup>
-        <FormGroup row>
-          <Label sm={2} for="description">Description</Label>
-          <Col sm={10}>
-            {/*<Input*/}
-            {/*  type="textarea" required*/}
-            {/*  name="description" id="description"*/}
-            {/*  placeholder="Enter description"*/}
-            {/*  value={this.state.description}*/}
-            {/*  onChange={this.inputChangeHandler}*/}
-            {/*/>*/}
-
-          </Col>
-        </FormGroup>
-
-        <FormGroup row>
-          <Label sm={2} for="image">Image</Label>
-          <Col sm={10}>
-            <Input
-              type="file"
-              name="image" id="image"
-              onChange={this.fileChangeHandler}
-            />
-          </Col>
-        </FormGroup>
+          <option value="">Please select a category...</option>
+          {this.props.options.map(category => (
+            <option key={category._id} value={category._id}>{category.title}</option>
+          ))}
+        </FormElement>
+        <FormElement
+          propertyName='title'
+          type='text'
+          value={this.state.title}
+          title='title'
+          onChange={this.inputChangeHandler}
+        />
+        <FormElement
+          propertyName='price'
+          type='number'
+          title='price'
+          required='true'
+          onChange={this.inputChangeHandler}
+        />
+        <FormElement
+          propertyName='description'
+          type='text'
+          value={this.state.description}
+          title='description'
+          onChange={this.inputChangeHandler}
+        />
+        <FormElement
+          propertyName='image'
+          title='image'
+          type='file'
+          onChange={this.fileChangeHandler}
+          required={true}
+        />
 
         <FormGroup row>
           <Col sm={{offset:2, size: 10}}>

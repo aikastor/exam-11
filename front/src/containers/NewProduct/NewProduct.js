@@ -20,7 +20,8 @@ class NewProduct extends Component {
         <h2>New product</h2>
         <ProductForm
           onSubmit={this.createProduct}
-          categories={this.props.categories}
+          options={this.props.categories}
+          seller={this.props.user._id}
         />
       </Fragment>
     );
@@ -28,7 +29,8 @@ class NewProduct extends Component {
 }
 
 const mapStateToProps = state => ({
-  categories: state.categories.categories
+  categories: state.categories.categories,
+  user: state.users.user,
 });
 
 const mapDispatchToProps = dispatch => ({

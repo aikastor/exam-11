@@ -39,9 +39,9 @@ class Products extends Component {
                   color="primary"
                   className="float-right"
                   tag={Link}
-                  to={"/posts/new"}
+                  to={"/products/new"}
                 >
-                  Add post
+                  Add product
                 </Button>
               }
             </h2>
