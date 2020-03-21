@@ -7,9 +7,12 @@ import {Alert} from "reactstrap";
 
 class NewProduct extends Component {
   componentDidMount() {
+    if(!this.props.user) {
+      this.props.history.push('/login');
+    }
+
     this.props.fetchCategories();
   }
-
   createProduct = async (productData) => {
     await this.props.createProduct(productData);
     this.props.history.push('/');

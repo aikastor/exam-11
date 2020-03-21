@@ -8,7 +8,7 @@ class ProductForm extends Component {
     title: '',
     price: '',
     image: '',
-    description: null
+    description: ''
   };
 
   submitFormHandler = event => {
@@ -72,7 +72,7 @@ class ProductForm extends Component {
           propertyName='price'
           type='number'
           title='price'
-          required='true'
+          required={true}
           onChange={this.inputChangeHandler}
         />
         <FormElement
