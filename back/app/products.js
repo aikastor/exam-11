@@ -28,7 +28,7 @@ router.get('/', async (req, res) => {
 
 router.get('/:id', async (req, res) => {
   try {
-    const item = await Product.findById(req.params.id);
+    const item = await Product.findById(req.params.id).populate('seller');
 
     if (!item) {
       return res.status(404).send({message: 'Not found'});
@@ -70,4 +70,31 @@ router.post('/', upload.single('image'), async (req, res) => {
   }
 });
 
+router.delete('/:id', async (req, res) => {
+  const authorizationHeader = req.get('Authentication');
+
+  if (!authorizationHeader) {
+    return res.status(403).send({error: 'No authentication header'});
+  }
+  const [type, userID] = authorizationHeader.split(' ');
+
+  console.log(userID);
+  console.log(type);
+
+  if (type !== 'UserID' || !userID) {
+    return res.status(403).send({error: "Authentication type wrong or userID not present"});
+  }
+
+  const product = await Product.findOne({seller: userID});
+
+  if (!product) {
+    return res.status(401).send({error: 'No product found under this username. UsedID incorrect!'});
+  }
+  try {
+    await Product.findByIdAndDelete(req.params.id);
+    res.status(200).send({message: 'Item deleted!'})
+  } catch (error) {
+    res.status(400).search({error})
+  }
+});
 module.exports = router;

@@ -29,7 +29,6 @@ class Login extends Component {
         {this.props.error && (
           <Alert color="danger">{this.props.error.error}</Alert>
         )}
-
         <Form onSubmit={this.submitFormHandler}>
           <FormElement
             propertyName="username"
