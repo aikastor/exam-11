@@ -1,5 +1,5 @@
 import React, {Component, Fragment} from 'react';
-import {Button, Col, ListGroup, ListGroupItem, Row, Spinner} from "reactstrap";
+import {Alert, Button, Col, ListGroup, ListGroupItem, Row} from "reactstrap";
 import {fetchProducts} from "../../store/actions/productsActions";
 import {connect} from "react-redux";
 import {Link, NavLink} from "react-router-dom";
@@ -20,6 +20,9 @@ class Products extends Component {
   render() {
     return (
       <Fragment>
+        {this.props.error && (
+          <Alert color="danger">{this.props.error.error}</Alert>
+        )}
         <Row style={{paddingTop: '25px', paddingBottom: '25px'}}>
           <Col xs={4}>
             <ListGroup>
@@ -70,6 +73,7 @@ const mapStateToProps = state => ({
   products: state.products.products,
   categories: state.categories.categories,
   user: state.users.user,
+  error: state.products.fetchProductsError,
 });
 
 const mapDispatchToProps = dispatch => ({

@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {deleteProduct, fetchProduct} from "../../store/actions/productsActions";
 import {connect} from "react-redux";
 import {apiURL} from "../../constants";
-import {Button} from "reactstrap";
+import {Alert, Button} from "reactstrap";
 
 class ProductPage extends Component {
   componentDidMount() {
@@ -15,6 +15,9 @@ class ProductPage extends Component {
 
     return (
       <div>
+        {this.props.error && (
+          <Alert color="danger">{this.props.error.error}</Alert>
+        )}
         <h1>{product.title}</h1>
         <h4>Price: {product.price}</h4>
         {
@@ -46,6 +49,7 @@ class ProductPage extends Component {
 const mapStateToProps = state => ({
   product: state.products.product,
   user: state.users.user,
+  error: state.products.fetchProductsError
 });
 
 const mapDispatchToProps = dispatch => ({
